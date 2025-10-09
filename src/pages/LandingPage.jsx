@@ -2,7 +2,6 @@ import Navbar from "@components/common/Navbar.jsx";
 import Hero from "@components/landing/Hero.jsx";
 import Demo from "@components/landing/Demo.jsx";
 import Features from "@components/landing/Features.jsx";
-import About from "@components/landing/About.jsx";
 import Footer from "@components/common/Footer.jsx";
 
 export default function LandingPage() {
@@ -12,7 +11,6 @@ export default function LandingPage() {
             <Hero />
             <Demo />
             <Features />
-            <About />
             <Footer />
         </div>
     );
