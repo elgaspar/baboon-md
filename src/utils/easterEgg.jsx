@@ -1,7 +1,7 @@
 export default function initEasterEgg() {
     console.log(
         "%c🌴 Welcome to the Jungle!",
-        "color: orange; font-size: 14px; font-weight: bold;"
+        "color: #FF6B35; font-size: 14px; font-weight: bold;"
     );
     console.log(
         "%cHint: try to find the banana... 🍌",

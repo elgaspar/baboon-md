@@ -1,4 +1,26 @@
+@import "@fontsource/dm-sans/400.css";
+@import "@fontsource/dm-sans/500.css";
+@import "@fontsource/dm-sans/700.css";
+@import "@fontsource/open-sans/400.css";
+@import "@fontsource/open-sans/500.css";
+@import "@fontsource/open-sans/700.css";
 @import "tailwindcss";
+
+@theme {
+    --color-primary: #1E1E1E;
+    --color-accent: #FF6B35;
+    --color-background: #FAFAFA;
+    --color-text: #222;
+
+    --font-heading: "DM Sans", sans-serif;
+    --font-body: "Open Sans", sans-serif;
+}
+
+@layer base {
+    body {
+        @apply bg-background text-text font-body;
+    }
+}
 
 ol, ul {
     list-style: revert;
@@ -42,3 +64,4 @@ ol, ul {
         box-shadow: none !important;
     }
 }
+
