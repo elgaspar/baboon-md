@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import ButtonLink from "@components/common/ButtonLink.jsx";
 
 export default function NotFoundPage() {
     return (
@@ -10,12 +11,7 @@ export default function NotFoundPage() {
             <div className="text-gray-500 mb-8 italic">
                 No PDFs grow here — just curious baboons chuckling in the trees 🐒
             </div>
-            <Link
-                to="/"
-                className="bg-accent hover:opacity-90 text-white font-semibold px-6 py-3 rounded-md transition"
-            >
-                Back to Home
-            </Link>
+            <ButtonLink to="/" text="Back to home"/>
         </div>
     );
 }

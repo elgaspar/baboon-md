@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom";
+import ButtonLink from "@components/common/ButtonLink.jsx";
 
 export default function Hero() {
     return (
@@ -11,12 +12,7 @@ export default function Hero() {
             </p>
 
             <div className="flex space-x-4">
-                <Link
-                    to="/editor"
-                    className="bg-accent hover:opacity-90 text-white px-6 py-3 rounded-md transition"
-                >
-                    Try It Now
-                </Link>
+                <ButtonLink to="/editor" text="Try it now"/>
             </div>
         </section>
     );

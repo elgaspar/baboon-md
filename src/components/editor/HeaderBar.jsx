@@ -1,3 +1,5 @@
+import Button from "@components/editor/Button.jsx";
+
 export default function HeaderBar() {
     const handlePrint = () => {
         window.print();
@@ -25,19 +27,8 @@ export default function HeaderBar() {
                         Preview
                     </h2>
                     <div className="space-x-2">
-                        <button
-                            onClick={handlePrint}
-                            className="bg-accent hover:opacity-90 text-white text-sm font-semibold px-4 py-1.5 rounded-md transition cursor-pointer"
-                        >
-                            Print
-                        </button>
-
-                        <button
-                            onClick={handleExportPDF}
-                            className="bg-accent hover:opacity-90 text-white text-sm font-semibold px-4 py-1.5 rounded-md transition cursor-pointer"
-                        >
-                            Export PDF
-                        </button>
+                        <Button onClick={handlePrint} text="Print" />
+                        <Button onClick={handleExportPDF} text="Save as PDF" />
                     </div>
                 </div>
             </div>
