@@ -1,17 +1,19 @@
-import { Link } from "react-router-dom";
+import Navbar from "@components/common/Navbar.jsx";
+import Hero from "@components/landing/Hero.jsx";
+import Demo from "@components/landing/Demo.jsx";
+import Features from "@components/landing/Features.jsx";
+import About from "@components/landing/About.jsx";
+import Footer from "@components/common/Footer.jsx";
 
 export default function LandingPage() {
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white text-center">
-            <div className="text-3xl font-bold mb-4">Hello Jungle! 🐒</div>
-            <div className="text-gray-300 mb-6">TODO: Landing page</div>
-
-            <Link
-                to="/editor"
-                className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-md transition"
-            >
-                Go to Editor
-            </Link>
+        <div className="min-h-screen flex flex-col items-center bg-white text-gray-900 gap-30">
+            <Navbar />
+            <Hero />
+            <Demo />
+            <Features />
+            <About />
+            <Footer />
         </div>
     );
 }
