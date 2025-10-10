@@ -4,6 +4,9 @@
 @import "@fontsource/open-sans/400.css";
 @import "@fontsource/open-sans/500.css";
 @import "@fontsource/open-sans/700.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/700.css";
 @import "tailwindcss";
 
 @theme {
@@ -46,6 +49,10 @@ ol, ul {
     padding-top: 27px;
 }
 
+.wmde-markdown {
+    font-family: 'Inter', sans-serif !important;
+}
+
 @media print {
     * {
         visibility: hidden;
@@ -62,6 +69,12 @@ ol, ul {
         top: 0;
         width: 100% !important;
         box-shadow: none !important;
+    }
+
+    pre, code {
+        white-space: pre-wrap !important;
+        word-break: break-word !important;
+        overflow-wrap: break-word !important;
     }
 }
 
