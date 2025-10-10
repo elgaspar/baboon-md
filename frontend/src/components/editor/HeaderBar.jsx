@@ -5,8 +5,37 @@ export default function HeaderBar() {
         window.print();
     };
 
-    const handleExportPDF = () => {
-        alert('Not implemented yet 🐒'); // TODO
+    const handleExportPDF = async () => {
+        const backendUrl = import.meta.env.VITE_API_URL + '/convert';
+
+        //TODO: get from editor
+        const markdown = "## Hello, World!"
+
+        try {
+            const res = await fetch(backendUrl, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({markdown: markdown}),
+            });
+
+            if (!res.ok) {
+                throw new Error('Failed to generate PDF');
+            }
+
+            const blob = await res.blob();
+            const url = window.URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'output.pdf'; // TODO
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
+        } catch (err) {
+            console.error(err);
+            alert('Failed to export PDF'); //TODO
+        }
     };
 
     return (
@@ -27,8 +56,8 @@ export default function HeaderBar() {
                         Preview
                     </h2>
                     <div className="space-x-2">
-                        <Button onClick={handlePrint} text="Print" />
-                        <Button onClick={handleExportPDF} text="Save as PDF" />
+                        <Button onClick={handlePrint} text="Print"/>
+                        <Button onClick={handleExportPDF} text="Save as PDF"/>
                     </div>
                 </div>
             </div>
