@@ -1,24 +1,49 @@
-import React from "react";
+import React, {useState} from "react";
 import MDEditor from "@uiw/react-md-editor";
 import "@uiw/react-md-editor/markdown-editor.css";
 import "@uiw/react-markdown-preview/markdown.css";
 import Button from "./Button.jsx";
 import saveAsPdf from "@utils/export.jsx";
+import {toast, Toaster} from "react-hot-toast";
 
 export default function EditorAndPreview() {
     const DEFAULT_MARKDOWN = "# Hello Jungle!\n\nThis is **BaboonMD**.";
-    const [markdown, setMarkdown] = React.useState(DEFAULT_MARKDOWN);
+    const [markdown, setMarkdown] = useState(DEFAULT_MARKDOWN);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handlePrint = () => {
         window.print();
     };
 
     const handleExportPDF = async () => {
-        await saveAsPdf(markdown)
+        setIsLoading(true);
+        toast.dismiss();
+
+        try {
+            await toast.promise(
+                saveAsPdf(markdown),
+                {
+                    loading: 'The baboons are working on it!',
+                    success: 'PDF ready! Delivered straight from the jungle.',
+                    error: 'Oops! The baboons made a mess. Try again later.'
+                },
+                {
+                    style: {
+                        maxWidth: "none",
+                    },
+                    success: {
+                        duration: 3000,
+                    },
+                }
+            );
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
         <div>
+            <Toaster />
             <div className="flex-1 w-full max-w mx-auto flex overflow-hidden">
                 <div className="w-1/2 flex flex-col">
                     <div
@@ -37,7 +62,7 @@ export default function EditorAndPreview() {
                         </h2>
                         <div className="space-x-2">
                             <Button onClick={handlePrint} text="Print"/>
-                            <Button onClick={handleExportPDF} text="Save as PDF"/>
+                            <Button onClick={handleExportPDF} text="Export PDF" disabled={isLoading} />
                         </div>
                     </div>
                 </div>
