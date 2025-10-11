@@ -46,12 +46,12 @@ ol, ul {
 }
 
 .w-md-editor-content {
-    padding-top: 50px;
+    padding-top: 27px;
 }
 
-@variant md {
+@media (max-width: 860px) {
     .w-md-editor-content {
-        padding-top: 27px;
+        padding-top: 50px;
     }
 }
 

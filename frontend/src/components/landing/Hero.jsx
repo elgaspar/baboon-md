@@ -19,7 +19,7 @@ export default function Hero() {
             <img
                 src={demoImage}
                 alt="BaboonMD editor and live PDF preview"
-                className="w-8/12 h-auto mt-10 border border-gray-200 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300 -rotate-1"
+                className="w-8/12 h-auto mt-10 border border-gray-200 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300"
             />
         </section>
     );
