@@ -6,7 +6,7 @@ import Button from "./Button.jsx";
 import saveAsPdf from "@utils/export.jsx";
 import {toast, Toaster} from "react-hot-toast";
 
-export default function EditorAndPreview() {
+export default function EditorAndPreview({className}) {
     const DEFAULT_MARKDOWN = "# Hello Jungle!\n\nThis is **BaboonMD**.";
     const [markdown, setMarkdown] = useState(DEFAULT_MARKDOWN);
     const [isLoading, setIsLoading] = useState(false);
@@ -42,7 +42,7 @@ export default function EditorAndPreview() {
     };
 
     return (
-        <div>
+        <div className={className}>
             <Toaster />
             <div className="flex-1 w-full max-w mx-auto flex overflow-hidden">
                 <div className="w-1/2 flex flex-col">
@@ -67,7 +67,7 @@ export default function EditorAndPreview() {
                     </div>
                 </div>
             </div>
-            <div className="h-[calc(100vh-13.2rem)] overflow-hidden" data-color-mode="light">
+            <div className="h-[calc(100vh-15rem)] md:h-[calc(100vh-13.2rem)] overflow-hidden" data-color-mode="light">
                 <MDEditor
                     value={markdown}
                     onChange={setMarkdown}

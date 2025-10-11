@@ -12,8 +12,8 @@ export default function Footer() {
             >
                 Elias Gasparis
             </a>
-            <span className="mx-2">·</span>
-            © {year} BaboonMD
+            <span className="mx-2 hidden md:inline">·</span>
+            <span className="block mt-2 md:inline md:m-0">© {year} BaboonMD</span>
         </footer>
     );
 }

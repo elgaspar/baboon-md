@@ -46,8 +46,15 @@ ol, ul {
 }
 
 .w-md-editor-content {
-    padding-top: 27px;
+    padding-top: 50px;
 }
+
+@variant md {
+    .w-md-editor-content {
+        padding-top: 27px;
+    }
+}
+
 
 .wmde-markdown {
     font-family: 'Inter', sans-serif !important;
