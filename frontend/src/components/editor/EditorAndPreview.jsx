@@ -7,7 +7,7 @@ import saveAsPdf from "@utils/export.jsx";
 import {toast, Toaster} from "react-hot-toast";
 
 export default function EditorAndPreview({className}) {
-    const DEFAULT_MARKDOWN = "# Hello Jungle!\n\nThis is **BaboonMD**.";
+    const DEFAULT_MARKDOWN = "# Hello Jungle!\n\nThis is **BaboonMD**.\n";
     const [markdown, setMarkdown] = useState(DEFAULT_MARKDOWN);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -72,6 +72,7 @@ export default function EditorAndPreview({className}) {
                     value={markdown}
                     onChange={setMarkdown}
                     height="100%"
+                    minHeight={null}
                     visibleDragbar={false}
                     extraCommands={[]}
                 />

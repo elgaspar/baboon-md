@@ -33,10 +33,6 @@ ol, ul {
     border-radius: 0 !important;
 }
 
-.w-md-editor-text {
-    height: 100%
-}
-
 .w-md-editor-toolbar {
     position: absolute;
     top: 0;
