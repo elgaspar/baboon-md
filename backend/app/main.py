@@ -32,24 +32,7 @@ async def ping():
 
 @app.post("/convert")
 async def convert(request: Request):
-#     return {'hello': 'worlds'}
     url = os.getenv("FRONTEND_EDITOR_PAGE_URL")
-
-#     data = {"foo": "test"}
-#     data_bytes = json.dumps(data).encode("utf-8")
-#
-#     req = urllib.request.Request(
-#         url,
-#         data=data_bytes,
-#         headers={"Content-Type": "application/json"},
-#         method="GET"
-#     )
-#
-#     with urllib.request.urlopen(req) as response:
-#         result = response.read()
-#
-#     return result.decode("utf-8")
-
 
     data = await request.json()
     markdown = data.get("markdown", "")
