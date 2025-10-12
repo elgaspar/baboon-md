@@ -44,35 +44,13 @@ jobs:
           packages: "graphicsmagick ghostscript"
           version: 1
 
-#      - name: Run Playwright tests
-#        run: npx playwright test e2e/export-pdf.spec.js --config=playwright.config.prod.js # TODO run all
-#        working-directory: tests
+      - name: Run Playwright tests
+        run: npx playwright test e2e/export-pdf.spec.js --config=playwright.config.prod.js # TODO run all
+        working-directory: tests
 
-#      - uses: actions/upload-artifact@v4
-#        if: ${{ !cancelled() }}
-#        with:
-#          name: playwright-report
-#          path: tests/playwright-report/
-#          retention-days: 30
-
-
-
-
-#      - name: Debug PDF generation inside backend container
-#        run: |
-#          curl -s \
-#            -X POST http://localhost:8000/convert \
-#            -H "Content-Type: application/json" \
-#            -d '{"markdown":"# Test PDF from CI"}' \
-#            -o /tmp/test.pdf
-#          ls -lh /tmp/test.pdf
-#          file /tmp/test.pdf
-      - name: Debug PDF generation inside backend container 2
-        run: |
-          docker compose -f docker-compose.prod.yml up -d
-          docker compose exec -T backend bash -c "
-            apt-get update && apt-get install -y curl file &&
-            curl -s \
-            -X GET http://frontend:5173/editor \
-            -H 'Content-Type: application/json'
-          "
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: tests/playwright-report/
+          retention-days: 30
