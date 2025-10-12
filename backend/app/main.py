@@ -12,13 +12,13 @@ import json
 load_dotenv()
 app = FastAPI(title="BaboonMD API", version="1.0.0")
 
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=[os.getenv("FRONTEND_CORS_URL")],
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 async def root():
