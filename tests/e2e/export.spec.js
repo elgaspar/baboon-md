@@ -10,28 +10,11 @@ test('export PDF', async ({page}, testInfo) => {
     await page.getByRole('link', {name: 'Try it now'}).click();
 
     const editor = page.locator('.w-md-editor-text-input');
-    await editor.fill(`# Line 1
-## Line 2
-\`\`\`python
-@app.get("/")
-async def root():
-    return {"message": "BaboonMD API is running"}
 
-
-@app.get("/ping")
-async def ping():
-    return {"pong": True}
-\`\`\`
-
-### Some lists
-- Item 1
-- Item 2
-    - Subitem 1
-    - Subitem 2
-
-1. First
-2. Second
-`);
+    const markdown = fs.readFileSync(
+        path.resolve(__dirname, '../assets/sample.md')
+    );
+    await editor.fill(markdown.toString());
 
     const downloadPromise = page.waitForEvent('download');
     await page.getByRole('button', {name: 'Export PDF'}).click();
