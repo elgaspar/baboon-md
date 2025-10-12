@@ -24,11 +24,9 @@ app.add_middleware(
 async def root():
     return {"message": "BaboonMD API is running"}
 
-
 @app.get("/ping")
 async def ping():
     return {"pong": True}
-
 
 @app.post("/convert")
 async def convert(request: Request):
