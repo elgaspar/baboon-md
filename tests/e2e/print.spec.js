@@ -3,7 +3,7 @@ import {test, expect} from '@playwright/test';
 import fs from "fs";
 import path from "path";
 
-test('print', async ({page}) => {
+test('renders Markdown print correctly', async ({page}) => {
     await page.goto('/');
 
     await page.getByRole('link', {name: 'Try it now'}).click();

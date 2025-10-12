@@ -1,7 +1,7 @@
 // @ts-check
 import {test, expect} from '@playwright/test';
 
-test('preview', async ({page}) => {
+test('renders Markdown preview correctly', async ({page}) => {
     await page.goto('/');
 
     await page.getByRole('link', {name: 'Try it now'}).click();

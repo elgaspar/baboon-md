@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import {fromPath} from 'pdf2pic';
 
-test('export PDF', async ({page}, testInfo) => {
+test('export Markdown to PDF', async ({page}, testInfo) => {
     await page.goto('/');
 
     await page.getByRole('link', {name: 'Try it now'}).click();
