@@ -1,0 +1,27 @@
+version: '3.9'
+
+services:
+  backend:
+    image: baboonmd-backend:prod
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    environment:
+      - FRONTEND_CORS_URL=http://localhost:5173
+      - FRONTEND_EDITOR_PAGE_URL=http://frontend:5173/editor
+
+  frontend:
+    image: baboonmd-frontend:prod
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    environment:
+      - VITE_API_URL=http://backend:8000
