@@ -1,24 +1,42 @@
 // @ts-check
 import {test, expect} from '@playwright/test';
-import fs from "fs";
-import path from "path";
 
-test.use({ viewport: { width: 375, height: 667 } });
+test.describe('responsive behavior', () => {
+    test.describe('screen width < 640px', () => {
+        test.use({viewport: {width: 639, height: 667}});
 
-test('shows warning message on small screens instead of editor', async ({page}) => {
-    await page.goto('/');
+        test('shows warning message instead of editor', async ({page}) => {
+            await page.goto('/');
 
-    await page.getByRole('link', {name: 'Try it now'}).click();
+            await page.getByRole('link', {name: 'Try it now'}).click();
 
-    // const editor = page.locator('.w-md-editor-text-input');
+            await expect(page.locator('.w-md-editor')).toBeHidden();
+            await expect(page.locator('.w-md-editor-text-input')).toBeHidden();
 
-    //TODO
+            const message = page.getByText(
+                'The baboons need more jungle space!' +
+                'Switch to a tablet, desktop, or try rotating your phone.',
+            );
+            await expect(message).toBeVisible();
+        });
+    })
 
-    // const markdown = fs.readFileSync(
-    //     path.resolve(__dirname, '../assets/sample.md')
-    // );
-    // await editor.fill(markdown.toString());
-    //
-    // await page.emulateMedia({ media: 'print' });
-    // await expect(page).toHaveScreenshot('print-preview.png', {maxDiffPixelRatio: 0, maxDiffPixels: 0, threshold: 0})
+    test.describe('screen width >= 640px', () => {
+        test.use({viewport: {width: 640, height: 667}});
+
+        test('shows editor instead of warning message', async ({page}) => {
+            await page.goto('/');
+
+            await page.getByRole('link', {name: 'Try it now'}).click();
+
+            await expect(page.locator('.w-md-editor')).toBeVisible();
+            await expect(page.locator('.w-md-editor-text-input')).toBeVisible();
+
+            const message = page.getByText(
+                'The baboons need more jungle space!' +
+                'Switch to a tablet, desktop, or try rotating your phone.',
+            );
+            await expect(message).toBeHidden();
+        });
+    });
 });
