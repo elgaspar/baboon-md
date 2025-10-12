@@ -36,13 +36,14 @@ async def convert(request: Request):
     markdown = data.get("markdown", "")
 
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True, args=["--no-sandbox"])
+        browser = await p.chromium.launch(headless=True, args=["--no-sandbox", "--disable-setuid-sandbox"])
         page = await browser.new_page()
         await page.goto(url, wait_until="networkidle")
 
         await page.wait_for_selector(".w-md-editor-text textarea", timeout=10000)
         await page.fill(".w-md-editor-text textarea", markdown)
-        await page.wait_for_timeout(500)
+        await page.wait_for_timeout(3000)
+
 
         with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tmp_pdf:
             await page.pdf(path=tmp_pdf.name, format="A4", print_background=True)
