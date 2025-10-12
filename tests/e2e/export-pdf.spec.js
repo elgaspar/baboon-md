@@ -3,7 +3,6 @@ import {test, expect} from '@playwright/test';
 import fs from 'fs';
 import path from 'path';
 import {fromPath} from 'pdf2pic';
-import {execSync} from "child_process";
 import {fileTypeFromFile} from "file-type";
 
 test('export Markdown to PDF', async ({page}, testInfo) => {
@@ -30,7 +29,6 @@ test('export Markdown to PDF', async ({page}, testInfo) => {
 
     const downloadedPdfPath = await download.path()
     const tmpDirectory = testInfo.outputPath();
-
 
     const type = await fileTypeFromFile(downloadedPdfPath);
     expect(type?.mime).toBe("application/pdf");
