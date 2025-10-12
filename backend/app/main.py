@@ -34,7 +34,6 @@ async def convert(request: Request):
     data = await request.json()
     markdown = data.get("markdown", "")
 
-
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True, args=["--no-sandbox"])
         page = await browser.new_page()
