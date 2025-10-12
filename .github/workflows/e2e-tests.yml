@@ -70,13 +70,9 @@ jobs:
       - name: Debug PDF generation inside backend container 2
         run: |
           docker compose -f docker-compose.prod.yml up -d
-          docker compose exec -T frontend bash -c "
+          docker compose exec -T backend bash -c "
             apt-get update && apt-get install -y curl file &&
             curl -s \
-            -X POST http://backend:8000/convert \
-            -H 'Content-Type: application/json' \
-            -d '{\"markdown\":\"# Test PDF from CI\"}' \
-            -o /tmp/test.pdf &&
-            ls -lh /tmp/test.pdf &&
-            file /tmp/test.pdf
+            -X GET http://frontend:5173/editor \
+            -H 'Content-Type: application/json'
           "
