@@ -8,6 +8,7 @@ RUN npm ci --only=production
 RUN apt-get update && \
     apt-get install -y --no-install-recommends chromium && \
     rm -rf /var/lib/apt/lists/* \
+
 RUN apt-get update && apt-get install -y \
     libnss3 libxss1 libatk-bridge2.0-0 libgtk-3-0 libx11-xcb1 \
     libasound2 fonts-liberation libxcomposite1 libxdamage1 libgbm1 \
