@@ -35,6 +35,11 @@ app.post("/convert", async (req, res) => {
         await page.waitForSelector(".w-md-editor-preview", {timeout: 5000});
         await new Promise((resolve) => setTimeout(resolve, 500));
 
+        await page.waitForFunction(() => {
+            const imgs = Array.from(document.images);
+            return imgs.every(img => img.complete);
+        });
+
         const pdf = await page.pdf({
             format: "A4",
             printBackground: true,
