@@ -44,9 +44,36 @@ jobs:
           packages: "graphicsmagick ghostscript"
           version: 1
 
-      - name: Run Playwright tests
-        run: npx playwright test e2e/export-pdf.spec.js --config=playwright.config.prod.js # TODO run all
+
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Restore Docker layer cache
+        uses: actions/cache@v4
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      - name: Build app services
+        run: |
+          docker compose -f docker-compose.prod.yml build \
+            --progress plain \
+            --build-arg BUILDKIT_INLINE_CACHE=1 \
+            --cache-from type=local,src=/tmp/.buildx-cache \
+            --cache-to type=local,dest=/tmp/.buildx-cache-new
         working-directory: tests
+
+      - name: Move updated cache
+        run: mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+
+
+
+#      - name: Run Playwright tests
+#        run: npx playwright test e2e/export-pdf.spec.js --config=playwright.config.prod.js # TODO run all
+#        working-directory: tests
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
