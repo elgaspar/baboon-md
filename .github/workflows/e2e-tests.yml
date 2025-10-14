@@ -65,11 +65,10 @@ jobs:
         run: |
           docker buildx bake \
             --allow=fs=/tmp \
-            -f ../docker-compose.prod.yml \
+            -f docker-compose.prod.yml \
             --progress plain \
             --set *.cache-from=type=local,src=/tmp/.buildx-cache \
             --set *.cache-to=type=local,dest=/tmp/.buildx-cache-new,mode=max
-        working-directory: tests
 
       - name: Move updated cache
         run: mv /tmp/.buildx-cache-new /tmp/.buildx-cache
