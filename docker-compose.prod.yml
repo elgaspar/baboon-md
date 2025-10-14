@@ -4,7 +4,7 @@ services:
   backend:
     image: baboonmd-backend:prod
     build:
-      context: backend
+      context: ./backend
       dockerfile: Dockerfile.prod
     ports:
       - "8000:8000"
