@@ -110,7 +110,7 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache-backend,mode=max
 
       - name: Run Playwright tests
-        run: npx playwright test e2e/export-pdf.spec.js --config=playwright.config.prod.js
+        run: npx playwright test e2e/healthcheck.spec.js --config=playwright.config.prod.js
         working-directory: tests
 
       - uses: actions/upload-artifact@v4
