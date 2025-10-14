@@ -32,6 +32,10 @@ test('export Markdown to PDF', async ({page}, testInfo) => {
     const downloadedPdfPath = path.join(tmpDirectory, download.suggestedFilename());
     await download.saveAs(downloadedPdfPath);
 
+    const size = fs.statSync(downloadedPdfPath).size;
+    console.log("Downloaded file size:", size);
+    console.log("First bytes:", fs.readFileSync(downloadedPdfPath, { encoding: "utf8", length: 200 }));
+
     const type = await fileTypeFromFile(downloadedPdfPath);
     expect(type?.mime).toBe("application/pdf");
 
