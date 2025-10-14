@@ -4,14 +4,14 @@ services:
   backend:
     image: baboonmd-backend:prod
     build:
-      context: ./backend
+      context: backend
       dockerfile: Dockerfile.prod
     ports:
       - "8000:8000"
     restart: unless-stopped
     environment:
       - FRONTEND_CORS_URL=http://localhost:5173
-      - FRONTEND_EDITOR_PAGE_URL=http://frontend:5173/editor
+      - FRONTEND_PREVIEW_URL=http://frontend:5173/preview
 
   frontend:
     image: baboonmd-frontend:prod
