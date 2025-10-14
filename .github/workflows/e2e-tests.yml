@@ -52,10 +52,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ hashFiles('../**/Dockerfile', '../**/package-lock.json') }}
+          key: ${{ runner.os }}-buildx-${{ hashFiles('**/Dockerfile', '**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-buildx-
-
 
       - name: Build app services (with cache)
         run: |
