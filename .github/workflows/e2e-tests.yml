@@ -87,7 +87,9 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@v4
         with:
-          path: /tmp/.buildx-cache
+          path: |
+            /tmp/.buildx-cache-frontend
+            /tmp/.buildx-cache-backend
           key: ${{ runner.os }}-buildx-${{ github.ref_name }}
           restore-keys: |
             ${{ runner.os }}-buildx-
@@ -99,8 +101,8 @@ jobs:
           file: ./frontend/Dockerfile.prod
           push: false
           load: true
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
+          cache-from: type=local,src=/tmp/.buildx-cache-frontend
+          cache-to: type=local,dest=/tmp/.buildx-cache-frontend,mode=max
 
       - name: Build Docker image (backend)
         uses: docker/build-push-action@v6
@@ -109,8 +111,8 @@ jobs:
           file: ./backend/Dockerfile.prod
           push: false
           load: true
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
+          cache-from: type=local,src=/tmp/.buildx-cache-backend
+          cache-to: type=local,dest=/tmp/.buildx-cache-backend,mode=max
 
 
 
