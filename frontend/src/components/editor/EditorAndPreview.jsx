@@ -1,18 +1,22 @@
-import React, {useState} from "react";
+import React, {useRef, useState} from "react";
 import MDEditor from "@uiw/react-md-editor";
 import "@uiw/react-md-editor/markdown-editor.css";
 import "@uiw/react-markdown-preview/markdown.css";
 import Button from "./Button.jsx";
 import saveAsPdf from "@utils/export.jsx";
 import {toast, Toaster} from "react-hot-toast";
+// import {useNavigate} from "react-router-dom";
+import PrintComponent from "@components/editor/PrintComponent.jsx";
 
 export default function EditorAndPreview({className}) {
     const DEFAULT_MARKDOWN = "# Hello Jungle!\n\nThis is **BaboonMD**.\n";
     const [markdown, setMarkdown] = useState(DEFAULT_MARKDOWN);
     const [isLoading, setIsLoading] = useState(false);
+    // const navigate = useNavigate();
+    const printRef = useRef();
 
     const handlePrint = () => {
-        window.print();
+        printRef.current.print()
     };
 
     const handleExportPDF = async () => {
@@ -61,6 +65,7 @@ export default function EditorAndPreview({className}) {
                             Preview
                         </h2>
                         <div className="space-x-2">
+                            <PrintComponent ref={printRef} markdown={markdown} />
                             <Button onClick={handlePrint} text="Print"/>
                             <Button onClick={handleExportPDF} text="Export PDF" disabled={isLoading} />
                         </div>

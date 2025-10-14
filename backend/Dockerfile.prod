@@ -1,42 +1,21 @@
-# ---------- Stage 1: Build dependencies ----------
-FROM python:3.12-slim AS builder
+FROM node:24-bookworm-slim
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y --no-install-recommends gcc && \
+COPY package*.json ./
+RUN npm ci --only=production
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends chromium && \
     rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+ENV PUPPETEER_SKIP_DOWNLOAD=true
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+ENV NODE_ENV=production
+ENV PORT=8000
 
-
-# ---------- Stage 2: Production runtime ----------
-FROM python:3.12-slim
-
-WORKDIR /app
-
-ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright \
-    PYTHONUNBUFFERED=1 \
-    PYTHONDONTWRITEBYTECODE=1
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-        libnss3 \
-        libx11-6 \
-        libxrender1 \
-        libxext6 \
-        fonts-liberation \
-        fonts-dejavu-core \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install Playwright & Chromium
-RUN pip install --no-cache-dir playwright && \
-    playwright install --with-deps chromium
-
-# Copy dependencies and app
-COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
-COPY --from=builder /usr/local/bin /usr/local/bin
 COPY . .
 
 EXPOSE 8000
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "4"]
+CMD ["node", "server.js"]
