@@ -64,6 +64,7 @@ jobs:
             --progress plain \
             --set *.cache-from=type=local,src=/tmp/.buildx-cache \
             --set *.cache-to=type=local,dest=/tmp/.buildx-cache-new,mode=max
+            --set *.output=type=docker
 
       - name: Move updated cache
         run: mv /tmp/.buildx-cache-new /tmp/.buildx-cache
