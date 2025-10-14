@@ -64,6 +64,7 @@ jobs:
       - name: Build app services (with cache)
         run: |
           docker buildx bake \
+            --allow=fs=/tmp \
             -f ../docker-compose.prod.yml \
             --progress plain \
             --set *.cache-from=type=local,src=/tmp/.buildx-cache \
