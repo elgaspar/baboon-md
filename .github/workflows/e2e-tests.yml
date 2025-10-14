@@ -52,9 +52,10 @@ jobs:
         uses: actions/cache@v4
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          key: ${{ runner.os }}-buildx-${{ hashFiles('../**/Dockerfile', '../**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-buildx-
+
 
       - name: Build app services (with cache)
         run: |
@@ -67,7 +68,9 @@ jobs:
             --set *.output=type=docker
 
       - name: Move updated cache
-        run: mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+        run: |
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
 #
 #      - name: Run Playwright tests
