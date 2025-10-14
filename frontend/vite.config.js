@@ -5,7 +5,7 @@ import path from "path";
 
 export default defineConfig({
     server: {
-        allowedHosts: ["host.docker.internal", "frontend"],
+        allowedHosts: ["host.docker.internal"],
     },
     plugins: [
         react(),

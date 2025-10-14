@@ -23,7 +23,7 @@ export default async function saveAsPdf(markdown) {
     const contentType = response.headers["content-type"];
 
     if (contentType !== "application/pdf") {
-        console.error("Backend did not return a PDF"); //TODO: remove me?
+        console.error("Backend did not return a PDF");
         throw new Error("Backend did not return a PDF");
     }
 
