@@ -27,11 +27,13 @@ test('export Markdown to PDF', async ({page}, testInfo) => {
 
     expect(download.suggestedFilename()).toBe('BaboonMD.pdf');
 
-    const downloadedPdfPath = await download.path()
     const tmpDirectory = testInfo.outputPath();
 
-    // const type = await fileTypeFromFile(downloadedPdfPath);
-    // expect(type?.mime).toBe("application/pdf");
+    const downloadedPdfPath = path.join(tmpDirectory, download.suggestedFilename());
+    await download.saveAs(downloadedPdfPath);
+
+    const type = await fileTypeFromFile(downloadedPdfPath);
+    expect(type?.mime).toBe("application/pdf");
 
     const convert = fromPath(downloadedPdfPath, {
         density: 150,
