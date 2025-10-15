@@ -11,7 +11,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  run-tests:
+  generate-snapshots:
     runs-on: ubuntu-latest
     timeout-minutes: 60
 
@@ -33,7 +33,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-cache
+          key: ${{ runner.os }}-playwright-${{ hashFiles('tests/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-playwright-
 
