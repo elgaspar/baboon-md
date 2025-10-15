@@ -19,7 +19,7 @@ app.use(
 
 app.get('/health', (req, res) => {
     res.status(200).json({ status: 'ok' });
-})
+});
 
 app.post('/convert', async (req, res) => {
     const { markdown = '' } = req.body;
