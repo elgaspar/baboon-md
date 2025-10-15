@@ -27,7 +27,7 @@ const PrintComponent = forwardRef(({ markdown }, ref) => {
         print: handlePrint,
     }));
 
-    return <iframe ref={iframeRef} style={{ display: 'none' }} />;
+    return <iframe id="print-iframe" ref={iframeRef} style={{ display: 'none' }} />;
 });
 
 export default PrintComponent;

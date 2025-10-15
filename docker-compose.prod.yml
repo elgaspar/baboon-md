@@ -11,7 +11,7 @@ services:
     restart: unless-stopped
     environment:
       - FRONTEND_CORS_URL=http://localhost:5173
-      - FRONTEND_PREVIEW_URL=http://frontend:5173/preview
+      - FRONTEND_EDITOR_URL=http://frontend:5173/editor
 
   frontend:
     image: baboonmd-frontend:prod

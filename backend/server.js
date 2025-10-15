@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json({ limit: '2mb' }));
 
 dotenv.config();
-const FRONTEND_PREVIEW_URL = process.env.FRONTEND_PREVIEW_URL;
+const FRONTEND_EDITOR_URL = process.env.FRONTEND_EDITOR_URL;
 
 app.use(
     cors({
@@ -31,7 +31,7 @@ app.post('/convert', async (req, res) => {
 
     try {
         const page = await browser.newPage();
-        await page.goto(FRONTEND_PREVIEW_URL, { waitUntil: 'networkidle0' });
+        await page.goto(FRONTEND_EDITOR_URL, { waitUntil: 'networkidle0' });
 
         await page.evaluate((md) => {
             // eslint-disable-next-line no-undef
@@ -65,4 +65,4 @@ app.post('/convert', async (req, res) => {
     }
 });
 
-app.listen(8000, () => console.log(`✅ Server running on http://localhost:8000`));
+app.listen(8000, () => console.log(`Server running on http://localhost:8000`));

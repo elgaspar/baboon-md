@@ -30,7 +30,6 @@ test('export Markdown to PDF', async ({page}, testInfo) => {
     const downloadedPdfPath = await download.path()
     const tmpDirectory = testInfo.outputPath();
 
-
     const type = await fileTypeFromFile(downloadedPdfPath);
     expect(type?.mime).toBe("application/pdf");
 
