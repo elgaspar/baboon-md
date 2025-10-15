@@ -1,4 +1,4 @@
-name: Generate Playwright Snapshots
+name: Generate Snapshots
 on:
   workflow_dispatch:
 
