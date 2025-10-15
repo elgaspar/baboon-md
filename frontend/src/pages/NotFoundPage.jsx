@@ -10,7 +10,7 @@ export default function NotFoundPage() {
                 Lost in the jungle?
             </div>
             <div className="text-gray-500 mb-8">
-                No PDFs grow here — just curious baboons chuckling in the trees
+                No PDFs grow here — just curious baboons chuckling in the trees.
             </div>
             <ButtonLink to="/" text="Back to home" />
         </div>
