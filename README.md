@@ -10,7 +10,6 @@
 </p>
 
 
-
 ## Quick Start
 
 Start everything with Docker Compose:

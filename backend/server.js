@@ -34,7 +34,9 @@ app.post('/convert', async (req, res) => {
         await page.goto(FRONTEND_PREVIEW_URL, { waitUntil: 'networkidle0' });
 
         await page.evaluate((md) => {
+            // eslint-disable-next-line no-undef
             window.__MARKDOWN__ = md;
+            // eslint-disable-next-line no-undef
             window.dispatchEvent(new Event('markdownUpdate'));
         }, markdown);
 

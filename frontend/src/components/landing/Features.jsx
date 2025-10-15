@@ -24,6 +24,7 @@ export default function Features() {
     return (
         <section className="w-full max-w-4xl px-6 text-center">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
+                {/* eslint-disable-next-line no-unused-vars */}
                 {features.map(({ icon: Icon, title, description }) => (
                     <div
                         className="p-4 rounded-xl transition hover:bg-gray-50 mx-auto md:mx-0"
