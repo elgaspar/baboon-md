@@ -6,6 +6,7 @@
     [![Code Style](https://github.com/elgaspar/baboonmd/actions/workflows/code-style.yml/badge.svg)](https://github.com/elgaspar/baboonmd/actions/workflows/code-style.yml)
 </center>
 
+<a href="https://example.com" style="text-decoration: none; color:red;">Link text</a>
 
 ## Quick Start
 
