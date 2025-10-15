@@ -1,7 +1,7 @@
 import express from 'express';
-import puppeteer from 'puppeteer';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import { chromium } from 'playwright';
 
 const app = express();
 app.use(express.json({ limit: '2mb' }));
@@ -24,30 +24,25 @@ app.get('/health', (req, res) => {
 app.post('/convert', async (req, res) => {
     const { markdown = '' } = req.body;
 
-    const browser = await puppeteer.launch({
+    const browser = await chromium.launch({
         headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
 
     try {
         const page = await browser.newPage();
-        await page.goto(FRONTEND_EDITOR_URL, { waitUntil: 'networkidle0' });
-
-        await page.evaluate((md) => {
-            // eslint-disable-next-line no-undef
-            window.__MARKDOWN__ = md;
-            // eslint-disable-next-line no-undef
-            window.dispatchEvent(new Event('markdownUpdate'));
-        }, markdown);
-
-        await page.waitForSelector('.w-md-editor-preview', { timeout: 5000 });
-        await new Promise((resolve) => setTimeout(resolve, 500));
-
-        await page.waitForFunction(() => {
-            // eslint-disable-next-line no-undef
-            const imgs = Array.from(document.images);
-            return imgs.every((img) => img.complete);
-        });
+        await page.goto(FRONTEND_EDITOR_URL, { waitUntil: 'networkidle' });
+        const editor = page.locator('.w-md-editor-text-input');
+        await editor.fill(markdown);
+        await page.waitForTimeout(1000);
+        await page.waitForFunction(
+            () => {
+                // eslint-disable-next-line no-undef
+                const imgs = Array.from(document.images);
+                return imgs.every((img) => img.complete);
+            },
+            { timeout: 10000 }
+        );
 
         const pdf = await page.pdf({
             format: 'A4',

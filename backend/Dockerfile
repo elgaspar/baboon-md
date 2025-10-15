@@ -12,6 +12,8 @@ RUN apt-get update && \
 ENV PUPPETEER_SKIP_DOWNLOAD=true
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
+RUN npx playwright install --with-deps chromium
+
 COPY . .
 
 EXPOSE 8000
