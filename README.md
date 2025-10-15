@@ -4,7 +4,12 @@
     <a href="https://github.com/elgaspar/baboonmd/actions/workflows/e2e-tests.yml">
         <img src="https://github.com/elgaspar/baboonmd/actions/workflows/e2e-tests.yml/badge.svg" alt="E2E Tests" />
     </a>
+    <a href="https://github.com/elgaspar/baboonmd/actions/workflows/code-style.yml">
+        <img src="https://github.com/elgaspar/baboonmd/actions/workflows/code-style.yml/badge.svg" alt="Code Style" />
+    </a>
 </p>
+
+
 
 ## Quick Start
 

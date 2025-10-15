@@ -7,7 +7,7 @@ export default async function saveAsPdf(markdown) {
     const apiBase = import.meta.env.VITE_API_URL;
 
     if (!apiBase) {
-            throw new Error('❌ Backend base URL is not defined.');
+        throw new Error('❌ Backend base URL is not defined.');
     }
 
     const backendUrl = `${apiBase}/convert`;
