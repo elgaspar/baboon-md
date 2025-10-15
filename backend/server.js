@@ -44,6 +44,7 @@ app.post('/convert', async (req, res) => {
         await new Promise((resolve) => setTimeout(resolve, 500));
 
         await page.waitForFunction(() => {
+            // eslint-disable-next-line no-undef
             const imgs = Array.from(document.images);
             return imgs.every((img) => img.complete);
         });
