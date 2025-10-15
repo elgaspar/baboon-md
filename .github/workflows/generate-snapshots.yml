@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: e2e-${{ github.ref }}
+  group: snapshots-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -29,7 +29,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ hashFiles('tests/package-lock.json') }}
+          key: ${{ runner.os }}-playwright-cache
+          restore-keys: |
+            ${{ runner.os }}-playwright-
 
       - name: Install Playwright Browsers
         if: steps.cache-playwright.outputs.cache-hit != 'true'
@@ -51,7 +53,7 @@ jobs:
           path: |
             /tmp/.buildx-cache-frontend
             /tmp/.buildx-cache-backend
-          key: ${{ runner.os }}-buildx-${{ github.ref_name }}
+          key: ${{ runner.os }}-buildx-cache
           restore-keys: |
             ${{ runner.os }}-buildx-
 
