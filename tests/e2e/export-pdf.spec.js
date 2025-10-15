@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import {fromPath} from 'pdf2pic';
 import {fileTypeFromFile} from "file-type";
+import { PDFParse } from 'pdf-parse';
 
 test('export Markdown to PDF', async ({page}, testInfo) => {
     page.on('pageerror', err => {
@@ -45,4 +46,33 @@ test('export Markdown to PDF', async ({page}, testInfo) => {
     const downloadedPdfImagePath = path.join(tmpDirectory, 'downloaded-pdf-screenshot.1.png');
     const image = fs.readFileSync(downloadedPdfImagePath);
     expect(image).toMatchSnapshot('export-preview.png', {maxDiffPixelRatio: 0, maxDiffPixels: 0, threshold: 0});
+});
+
+test('export Markdown to PDF with multiple pages', async ({page}, testInfo) => {
+    page.on('pageerror', err => {
+        throw new Error(`Uncaught error: ${err.message}`);
+    });
+
+    await page.goto('/');
+
+    await page.getByRole('link', {name: 'Try it now'}).click();
+
+    const editor = page.locator('.w-md-editor-text-input');
+
+    const markdown = fs.readFileSync(
+        path.resolve(__dirname, '../assets/sample-large.md')
+    );
+    await editor.fill(markdown.toString());
+
+    const downloadPromise = page.waitForEvent('download');
+    await page.getByRole('button', {name: 'Export PDF'}).click();
+    const download = await downloadPromise;
+    const downloadedPdfPath = await download.path()
+
+    const type = await fileTypeFromFile(downloadedPdfPath);
+    expect(type?.mime).toBe("application/pdf");
+
+    const parser = new PDFParse({ data: fs.readFileSync(downloadedPdfPath) });
+    const info = await parser.getInfo();
+    expect(info.total).toBe(2);
 });

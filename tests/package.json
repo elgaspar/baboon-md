@@ -11,6 +11,7 @@
     "@playwright/test": "^1.56.0",
     "@types/node": "^24.7.2",
     "file-type": "^21.0.0",
+    "pdf-parse": "^2.3.12",
     "pdf2pic": "^3.2.0"
   }
 }
