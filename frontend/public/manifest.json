@@ -1,0 +1,21 @@
+{
+    "name": "BaboonMD",
+    "short_name": "BaboonMD",
+    "description": "Convert Markdown to clean, minimal PDFs instantly.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#FAFAFA",
+    "theme_color": "#e3642d",
+    "icons": [
+        {
+            "src": "/favicon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicon-437.png",
+            "sizes": "437x437",
+            "type": "image/png"
+        }
+    ]
+}
