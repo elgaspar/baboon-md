@@ -1,22 +1,22 @@
-@import "@fontsource/dm-sans/400.css";
-@import "@fontsource/dm-sans/500.css";
-@import "@fontsource/dm-sans/700.css";
-@import "@fontsource/open-sans/400.css";
-@import "@fontsource/open-sans/500.css";
-@import "@fontsource/open-sans/700.css";
-@import "@fontsource/inter/400.css";
-@import "@fontsource/inter/500.css";
-@import "@fontsource/inter/700.css";
-@import "tailwindcss";
+@import '@fontsource/dm-sans/400.css';
+@import '@fontsource/dm-sans/500.css';
+@import '@fontsource/dm-sans/700.css';
+@import '@fontsource/open-sans/400.css';
+@import '@fontsource/open-sans/500.css';
+@import '@fontsource/open-sans/700.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/700.css';
+@import 'tailwindcss';
 
 @theme {
-    --color-primary: #1E1E1E;
+    --color-primary: #1e1e1e;
     --color-accent: #e3642d;
-    --color-background: #FAFAFA;
+    --color-background: #fafafa;
     --color-text: #222;
 
-    --font-heading: "DM Sans", sans-serif;
-    --font-body: "Open Sans", sans-serif;
+    --font-heading: 'DM Sans', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
 }
 
 @layer base {
@@ -25,7 +25,8 @@
     }
 }
 
-ol, ul {
+ol,
+ul {
     list-style: revert;
 }
 
@@ -33,7 +34,8 @@ ol, ul {
     border-radius: 0 !important;
 }
 
-.w-md-editor-text-input, .w-md-editor-text-pre .code-line {
+.w-md-editor-text-input,
+.w-md-editor-text-pre .code-line {
     font-size: 1rem !important;
     line-height: 2rem !important;
 }
@@ -74,7 +76,11 @@ ol, ul {
 }
 
 @media print {
-    html, body, #root, main, .w-md-editor-preview {
+    html,
+    body,
+    #root,
+    main,
+    .w-md-editor-preview {
         all: unset;
     }
 
@@ -90,7 +96,8 @@ ol, ul {
         box-shadow: none !important;
     }
 
-    pre, code {
+    pre,
+    code {
         white-space: pre-wrap !important;
         word-break: break-word !important;
         overflow-wrap: break-word !important;

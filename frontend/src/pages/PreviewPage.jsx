@@ -1,10 +1,10 @@
-import MDEditor from "@uiw/react-md-editor";
-import React, {useEffect, useState} from "react";
+import MDEditor from '@uiw/react-md-editor';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export default function PreviewPage() {
     const location = useLocation();
-    const [markdown, setMarkdown] = useState("");
+    const [markdown, setMarkdown] = useState('');
 
     useEffect(() => {
         const updateMarkdown = () => {
@@ -19,17 +19,17 @@ export default function PreviewPage() {
             setMarkdown(window.__MARKDOWN__);
         }
 
-        window.addEventListener("markdownUpdate", updateMarkdown);
-        return () => window.removeEventListener("markdownUpdate", updateMarkdown);
+        window.addEventListener('markdownUpdate', updateMarkdown);
+        return () => window.removeEventListener('markdownUpdate', updateMarkdown);
     }, [location.state]);
 
     useEffect(() => {
         if (!markdown) return;
 
         const ensureImagesLoaded = () => {
-            const images = Array.from(document.querySelectorAll("img"));
+            const images = Array.from(document.querySelectorAll('img'));
             if (images.length === 0) {
-                window.dispatchEvent(new Event("previewReady"));
+                window.dispatchEvent(new Event('previewReady'));
                 return;
             }
 
@@ -38,19 +38,19 @@ export default function PreviewPage() {
                 if (img.complete) {
                     loaded++;
                     if (loaded === images.length) {
-                        window.dispatchEvent(new Event("previewReady"));
+                        window.dispatchEvent(new Event('previewReady'));
                     }
                 } else {
-                    img.addEventListener("load", () => {
+                    img.addEventListener('load', () => {
                         loaded++;
                         if (loaded === images.length) {
-                            window.dispatchEvent(new Event("previewReady"));
+                            window.dispatchEvent(new Event('previewReady'));
                         }
                     });
-                    img.addEventListener("error", () => {
+                    img.addEventListener('error', () => {
                         loaded++;
                         if (loaded === images.length) {
-                            window.dispatchEvent(new Event("previewReady"));
+                            window.dispatchEvent(new Event('previewReady'));
                         }
                     });
                 }
@@ -59,7 +59,6 @@ export default function PreviewPage() {
 
         requestAnimationFrame(ensureImagesLoaded);
     }, [markdown]);
-
 
     return (
         <div className="h-screen" data-color-mode="light">

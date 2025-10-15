@@ -1,22 +1,22 @@
-import React, {useRef, useState} from "react";
-import MDEditor from "@uiw/react-md-editor";
-import "@uiw/react-md-editor/markdown-editor.css";
-import "@uiw/react-markdown-preview/markdown.css";
-import Button from "./Button.jsx";
-import saveAsPdf from "@utils/export.jsx";
-import {toast, Toaster} from "react-hot-toast";
+import React, { useRef, useState } from 'react';
+import MDEditor from '@uiw/react-md-editor';
+import '@uiw/react-md-editor/markdown-editor.css';
+import '@uiw/react-markdown-preview/markdown.css';
+import Button from './Button.jsx';
+import saveAsPdf from '@utils/export.jsx';
+import { toast, Toaster } from 'react-hot-toast';
 // import {useNavigate} from "react-router-dom";
-import PrintComponent from "@components/editor/PrintComponent.jsx";
+import PrintComponent from '@components/editor/PrintComponent.jsx';
 
-export default function EditorAndPreview({className}) {
-    const DEFAULT_MARKDOWN = "# Hello Jungle!\n\nThis is **BaboonMD**.\n";
+export default function EditorAndPreview({ className }) {
+    const DEFAULT_MARKDOWN = '# Hello Jungle!\n\nThis is **BaboonMD**.\n';
     const [markdown, setMarkdown] = useState(DEFAULT_MARKDOWN);
     const [isLoading, setIsLoading] = useState(false);
     // const navigate = useNavigate();
     const printRef = useRef();
 
     const handlePrint = () => {
-        printRef.current.print()
+        printRef.current.print();
     };
 
     const handleExportPDF = async () => {
@@ -29,11 +29,11 @@ export default function EditorAndPreview({className}) {
                 {
                     loading: 'The baboons are working on it!',
                     success: 'PDF ready! Delivered straight from the jungle.',
-                    error: 'Oops! The baboons made a mess. Try again later.'
+                    error: 'Oops! The baboons made a mess. Try again later.',
                 },
                 {
                     style: {
-                        maxWidth: "none",
+                        maxWidth: 'none',
                     },
                     success: {
                         duration: 3000,
@@ -50,8 +50,7 @@ export default function EditorAndPreview({className}) {
             <Toaster />
             <div className="flex-1 w-full max-w mx-auto flex overflow-hidden">
                 <div className="w-1/2 flex flex-col">
-                    <div
-                        className="flex justify-between items-center px-4 py-2 border-b border-gray-300 bg-gray-100 h-12">
+                    <div className="flex justify-between items-center px-4 py-2 border-b border-gray-300 bg-gray-100 h-12">
                         <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide font-heading">
                             Markdown
                         </h2>
@@ -59,20 +58,26 @@ export default function EditorAndPreview({className}) {
                 </div>
 
                 <div className="w-1/2 flex flex-col border-l border-gray-300">
-                    <div
-                        className="flex justify-between items-center px-4 py-2 border-b border-gray-300 bg-gray-50 h-12">
+                    <div className="flex justify-between items-center px-4 py-2 border-b border-gray-300 bg-gray-50 h-12">
                         <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide font-heading">
                             Preview
                         </h2>
                         <div className="space-x-2">
                             <PrintComponent ref={printRef} markdown={markdown} />
-                            <Button onClick={handlePrint} text="Print"/>
-                            <Button onClick={handleExportPDF} text="Export PDF" disabled={isLoading} />
+                            <Button onClick={handlePrint} text="Print" />
+                            <Button
+                                onClick={handleExportPDF}
+                                text="Export PDF"
+                                disabled={isLoading}
+                            />
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="h-[calc(100vh-15rem)] md:h-[calc(100vh-13.2rem)] overflow-hidden" data-color-mode="light">
+            <div
+                className="h-[calc(100vh-15rem)] md:h-[calc(100vh-13.2rem)] overflow-hidden"
+                data-color-mode="light"
+            >
                 <MDEditor
                     value={markdown}
                     onChange={setMarkdown}

@@ -3,7 +3,7 @@ export default function Footer() {
 
     return (
         <footer className="m-3 text-gray-500 text-sm text-center px-4">
-            Crafted with ❤️ & ☕ by{" "}
+            Crafted with ❤️ & ☕ by{' '}
             <a
                 href="https://github.com/elgaspar"
                 target="_blank"

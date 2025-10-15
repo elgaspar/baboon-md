@@ -1,4 +1,4 @@
-import logo from "@assets/logo.png";
+import logo from '@assets/logo.png';
 
 export default function MobileWarning() {
     return (
@@ -6,7 +6,8 @@ export default function MobileWarning() {
             <img src={logo} alt="BaboonMD Logo" className="h-14 mb-4" />
 
             <p className="text-gray-600">
-                The baboons need more jungle space!<br />
+                The baboons need more jungle space!
+                <br />
                 Switch to a tablet, desktop, or try rotating your phone.
             </p>
         </div>

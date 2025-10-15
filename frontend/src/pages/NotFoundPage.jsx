@@ -1,5 +1,5 @@
-import ButtonLink from "@components/common/ButtonLink.jsx";
-import logo from "@assets/logo.png";
+import ButtonLink from '@components/common/ButtonLink.jsx';
+import logo from '@assets/logo.png';
 
 export default function NotFoundPage() {
     return (
@@ -12,7 +12,7 @@ export default function NotFoundPage() {
             <div className="text-gray-500 mb-8">
                 No PDFs grow here — just curious baboons chuckling in the trees
             </div>
-            <ButtonLink to="/" text="Back to home"/>
+            <ButtonLink to="/" text="Back to home" />
         </div>
     );
 }

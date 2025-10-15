@@ -1,4 +1,4 @@
-import { useRef, useImperativeHandle, forwardRef } from "react";
+import { useRef, useImperativeHandle, forwardRef } from 'react';
 
 const PrintComponent = forwardRef(({ markdown }, ref) => {
     const iframeRef = useRef(null);
@@ -9,30 +9,25 @@ const PrintComponent = forwardRef(({ markdown }, ref) => {
 
         iframe.onload = () => {
             iframe.contentWindow.__MARKDOWN__ = markdown;
-            iframe.contentWindow.dispatchEvent(new Event("markdownUpdate"));
+            iframe.contentWindow.dispatchEvent(new Event('markdownUpdate'));
 
             const handleReady = () => {
-                iframe.contentWindow.removeEventListener("previewReady", handleReady);
+                iframe.contentWindow.removeEventListener('previewReady', handleReady);
                 iframe.contentWindow.focus();
                 iframe.contentWindow.print();
             };
 
-            iframe.contentWindow.addEventListener("previewReady", handleReady);
+            iframe.contentWindow.addEventListener('previewReady', handleReady);
         };
 
-        iframe.src = "/preview";
+        iframe.src = '/preview';
     };
 
     useImperativeHandle(ref, () => ({
-        print: handlePrint
+        print: handlePrint,
     }));
 
-    return (
-        <iframe
-            ref={iframeRef}
-            style={{ display: "none" }}
-        />
-    );
+    return <iframe ref={iframeRef} style={{ display: 'none' }} />;
 });
 
 export default PrintComponent;

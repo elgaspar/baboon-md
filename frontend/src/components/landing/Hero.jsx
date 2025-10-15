@@ -1,6 +1,6 @@
-import {Link} from "react-router-dom";
-import ButtonLink from "@components/common/ButtonLink.jsx";
-import demoImage from "@assets/demo.png";
+import { Link } from 'react-router-dom';
+import ButtonLink from '@components/common/ButtonLink.jsx';
+import demoImage from '@assets/demo.png';
 
 export default function Hero() {
     return (
@@ -8,12 +8,10 @@ export default function Hero() {
             <h1 className="text-4xl font-bold mb-4 font-heading">
                 Turn your Markdown into clean, minimal PDF
             </h1>
-            <p className="text-gray-600 mb-8">
-                No clutter. No nonsense. Instant export.
-            </p>
+            <p className="text-gray-600 mb-8">No clutter. No nonsense. Instant export.</p>
 
             <div className="flex space-x-4">
-                <ButtonLink to="/editor" text="Try it now"/>
+                <ButtonLink to="/editor" text="Try it now" />
             </div>
 
             <img
