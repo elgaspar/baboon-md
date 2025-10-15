@@ -3,14 +3,12 @@
     <br/>    
     <a style="text-decoration:none;" href="https://github.com/elgaspar/baboonmd/actions/workflows/e2e-tests.yml">
         <img src="https://github.com/elgaspar/baboonmd/actions/workflows/e2e-tests.yml/badge.svg" alt="E2E Tests" />
-    </a><a style="text-decoration:none;" href="https://github.com/elgaspar/baboonmd/actions/workflows/code-style.yml">
+    </a>
+    <a style="text-decoration:none;" href="https://github.com/elgaspar/baboonmd/actions/workflows/code-style.yml">
         <img src="https://github.com/elgaspar/baboonmd/actions/workflows/code-style.yml/badge.svg" alt="Code Style" />
     </a>
 </p>
 
-
-[![E2E Tests](https://github.com/elgaspar/baboonmd/actions/workflows/e2e-tests.yml/badge.svg)](https://github.com/elgaspar/baboonmd/actions/workflows/e2e-tests.yml)
-[![Code Style](https://github.com/elgaspar/baboonmd/actions/workflows/code-style.yml/badge.svg)](https://github.com/elgaspar/baboonmd/actions/workflows/code-style.yml)
 
 ## Quick Start
 
