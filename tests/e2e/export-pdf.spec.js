@@ -6,6 +6,10 @@ import {fromPath} from 'pdf2pic';
 import {fileTypeFromFile} from "file-type";
 
 test('export Markdown to PDF', async ({page}, testInfo) => {
+    page.on('pageerror', err => {
+        throw new Error(`Uncaught error: ${err.message}`);
+    });
+
     await page.goto('/');
 
     await page.getByRole('link', {name: 'Try it now'}).click();

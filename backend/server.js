@@ -15,6 +15,10 @@ app.use(cors({
     allowedHeaders: ["Content-Type"],
 }));
 
+app.get("/health", (req, res) => {
+    res.status(200).json({ status: "ok" });
+});
+
 app.post("/convert", async (req, res) => {
     const {markdown = ""} = req.body;
 
