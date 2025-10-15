@@ -3,9 +3,7 @@
     <br/>    
     <a style="text-decoration:none;" href="https://github.com/elgaspar/baboonmd/actions/workflows/e2e-tests.yml">
         <img src="https://github.com/elgaspar/baboonmd/actions/workflows/e2e-tests.yml/badge.svg" alt="E2E Tests" />
-    </a>
-    &nbsp;
-    <a style="text-decoration:none;" href="https://github.com/elgaspar/baboonmd/actions/workflows/code-style.yml">
+    </a><a style="text-decoration:none;" href="https://github.com/elgaspar/baboonmd/actions/workflows/code-style.yml">
         <img src="https://github.com/elgaspar/baboonmd/actions/workflows/code-style.yml/badge.svg" alt="Code Style" />
     </a>
 </p>
