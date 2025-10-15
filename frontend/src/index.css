@@ -107,8 +107,9 @@ ul {
         background: unset;
     }
 
-    main {
-        border: none;
+    main,
+    .w-md-editor {
+        border: none !important;
         box-shadow: none !important;
     }
 
