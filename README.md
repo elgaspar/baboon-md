@@ -13,12 +13,60 @@
 </p>
 
 
-## Quick Start
 
-Start everything with Docker Compose:
+BaboonMD is a minimal web application that converts Markdown into clean PDF documents.
+
+## Features
+
+- Exports real text that is sharp, searchable, and selectable
+- Watch your PDF update as you type in real-time
+- No data collection or sign-ups required
+
+## Tech Stack
+
+### Frontend
+- React 19 and Tailwind CSS 4
+- Node.js, Express 5 and Playwright for backend server and PDF generation
+- Playwright for E2E testing
+
+
+
+## Installation & Setup
+
+### Requirements
+
+TODO
+
+### Setup
+
+1. Start everything with Docker Compose:
+
+    ```bash
+    docker compose up
+    ```
+
+2. Create a `.env` file in the backend directory:
+
+    ```env
+    FRONTEND_EDITOR_URL=http://localhost:5173/editor
+    FRONTEND_CORS_URL=http://localhost:5173
+    ```
+   
+3. Create a `.env` file in the frontend directory:
+
+    ```env
+    TODO
+    ```
+
+4. Access the application at http://localhost:5173
+
+
+### Production
+
+Build and run the production version:
 
 ```bash
-docker compose up
+docker compose -f docker-compose.prod.yml up
 ```
 
 ## Author
@@ -28,4 +76,3 @@ docker compose up
 ## License
 
 This project is licensed under the [MIT License](./LICENSE).
-
