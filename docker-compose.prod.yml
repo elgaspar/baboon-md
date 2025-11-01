@@ -4,12 +4,12 @@ services:
     build:
       context: ./backend
       target: prod
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"
     restart: unless-stopped
     environment:
-      - FRONTEND_CORS_URL=http://localhost:5173
-      - FRONTEND_EDITOR_URL=http://frontend:5173/editor
+      - FRONTEND_CORS_URL=https://${DOMAIN}
+      - FRONTEND_EDITOR_URL=https://${DOMAIN}/editor
 
   frontend:
     image: baboonmd-frontend:prod
@@ -17,9 +17,26 @@ services:
       context: ./frontend
       target: prod
       args:
-        VITE_API_URL: http://localhost:8000
-    ports:
-      - "5173:5173"
+        VITE_API_URL: https://${DOMAIN}/api
+    expose:
+      - "5173"
     depends_on:
       - backend
     restart: unless-stopped
+
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    restart: unless-stopped
+    environment:
+      - DOMAIN=${DOMAIN}
+
+volumes:
+  caddy_data:
+  caddy_config:

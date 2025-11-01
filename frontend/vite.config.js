@@ -10,7 +10,7 @@ const __dirname = dirname(__filename);
 
 export default defineConfig({
     server: {
-        allowedHosts: ['host.docker.internal'],
+        allowedHosts: ['frontend', 'localhost']
     },
     plugins: [react(), tailwindcss()],
     resolve: {

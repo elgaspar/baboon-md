@@ -36,30 +36,24 @@ BaboonMD is a minimal web application that converts Markdown into clean PDF docu
 
 ### Development
 
-1. Create a `.env` file in the `backend` directory:
-   ```env
-   FRONTEND_CORS_URL=http://localhost:5173
-   FRONTEND_EDITOR_URL=http://localhost:5173/editor
-   ```
+Start the development environment:
+```bash
+docker compose up -d
+```
 
-2. Create a `.env` file in the `frontend` directory:
-   ```env
-   VITE_API_URL=http://localhost:8000
-   ```
-
-3. Start the development environment:
-   ```bash
-   docker compose up -d
-   ```
-
-4. Access the application at http://localhost:5173
+Access the application at http://localhost:5173
 
 ### Production
 
-Build and run the production version:
-```bash
-docker compose -f docker-compose.prod.yml up -d
-```
+1. Create a `.env.prod` file:
+   ```env
+   DOMAIN=yourdomain.com
+   ```
+
+2. Build and run the production version:
+   ```bash
+   docker compose -f docker-compose.prod.yml --env-file .env.prod up -d
+   ```
 
 ## Author
 

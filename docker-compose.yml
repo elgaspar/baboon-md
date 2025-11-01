@@ -9,6 +9,9 @@ services:
     volumes:
       - ./backend:/app
       - /app/node_modules
+    environment:
+      - FRONTEND_CORS_URL=http://localhost:5173
+      - FRONTEND_EDITOR_URL=http://frontend:5173/editor
 
   frontend:
     image: baboonmd-frontend:dev
@@ -20,5 +23,7 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
+    environment:
+      - VITE_API_URL=http://localhost:8000
     depends_on:
       - backend
