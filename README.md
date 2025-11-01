@@ -22,9 +22,10 @@ BaboonMD is a minimal web application that converts Markdown into clean PDF docu
 
 ## Tech Stack
 
-- React 19 and Tailwind CSS 4 for frontend
-- Node.js, Express 5 and Playwright for backend server and PDF generation
-- Playwright for E2E testing
+- **Frontend:** React, Tailwind CSS
+- **Backend:** Node.js, Express, Playwright
+- **Testing:** Playwright (E2E)
+- **Deployment:** Docker Compose
 
 ## Installation & Setup
 
