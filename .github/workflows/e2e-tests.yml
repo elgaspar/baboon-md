@@ -63,7 +63,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./frontend
-          file: ./frontend/Dockerfile.prod
+          target: prod
           push: false
           load: true
           cache-from: type=local,src=/tmp/.buildx-cache-frontend
@@ -73,7 +73,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./backend
-          file: ./backend/Dockerfile.prod
+          target: prod
           push: false
           load: true
           cache-from: type=local,src=/tmp/.buildx-cache-backend
