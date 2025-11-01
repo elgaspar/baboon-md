@@ -10,7 +10,7 @@ const __dirname = dirname(__filename);
 
 export default defineConfig({
     server: {
-        allowedHosts: ['frontend', 'localhost']
+        allowedHosts: ['frontend', 'localhost'],
     },
     plugins: [react(), tailwindcss()],
     resolve: {
