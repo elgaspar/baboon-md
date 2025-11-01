@@ -50,9 +50,9 @@ Access the application at http://localhost:5173
    DOMAIN=yourdomain.com
    ```
 
-2. Build and run the production version:
+2. Deploy
    ```bash
-   docker compose -f docker-compose.prod.yml --env-file .env.prod up -d
+   ./deploy.sh
    ```
 
 ## Author
